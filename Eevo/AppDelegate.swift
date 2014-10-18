@@ -13,12 +13,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        //Parse Ids 
-        
-        Parse.setApplicationId(appKey, clientKey: clientKey)
-        Eevo.appInit("ck", pwd: "12345678")
+        Parse.setApplicationId("Duz271CygXpCc8IsoUyNybDvGp4By1LKmb3nlzfC", clientKey: "FmV10FvtNZZysKXs4m5sBMKIiOLUAEi3iXR4DGU8")
+        if var organizer = PFQuery(className: "Organizer").getObjectWithId("zWdd1CdDFu") {
+            var storyboard = UIStoryboard(name: "Organizer", bundle: nil)
+            var organizerNavigationController = storyboard.instantiateInitialViewController() as UINavigationController
+            var organizerController = organizerNavigationController.viewControllers[0] as OrganizerViewController
+            organizerController.organizer = organizer
+            window?.rootViewController = organizerNavigationController
+        }
         return true
     }
 

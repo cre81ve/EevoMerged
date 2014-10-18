@@ -8,7 +8,7 @@
 
 import UIKit
 
-class EventsCollectionViewController: UIViewController ,UICollectionViewDelegate ,UICollectionViewDataSource,RNFrostedSidebarDelegate{
+class EventsCollectionViewController: LoggedInViewController ,UICollectionViewDelegate ,UICollectionViewDataSource,RNFrostedSidebarDelegate {
 
     @IBOutlet weak var eventCollectionView: UICollectionView!
     

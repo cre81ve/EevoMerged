@@ -13,10 +13,7 @@ let clientKey:String = "FmV10FvtNZZysKXs4m5sBMKIiOLUAEi3iXR4DGU8"
 
 
 class Eevo {
-    
-    
-    class func appInit(userName:String,pwd:String) {
-        
+    class func appInit(userName:String,pwd:String) {        
         PFUser.logInWithUsernameInBackground(userName, password: pwd
             ) { (user, error) -> Void in
                 if (user != nil) {

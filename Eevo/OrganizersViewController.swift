@@ -8,7 +8,7 @@
 
 import UIKit
 
-class OrganizersViewController: UIViewController ,UITableViewDelegate ,UITableViewDataSource ,RNFrostedSidebarDelegate{
+class OrganizersViewController: LoggedInViewController ,UITableViewDelegate ,UITableViewDataSource ,RNFrostedSidebarDelegate {
 //    var icons:NSArray = [UIImage(named:"iconorganizer"),UIImage(named:"iconevent"),UIImage(named:"feedback")]
 
         var icons:NSArray = [UIImage(named:"icon-organizers"),UIImage(named:"icon-event"),UIImage(named:"icon-feedback")]
