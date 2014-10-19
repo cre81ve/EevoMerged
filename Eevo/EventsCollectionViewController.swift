@@ -11,9 +11,7 @@ import UIKit
 class EventsCollectionViewController: LoggedInViewController ,UICollectionViewDelegate ,UICollectionViewDataSource,RNFrostedSidebarDelegate {
 
     @IBOutlet weak var eventCollectionView: UICollectionView!
-    
-    
-    
+        
     var icons:NSArray = [UIImage(named:"icon-organizers"),UIImage(named:"icon-event"),UIImage(named:"icon-feedback")]
     @IBAction func onBurger(sender: AnyObject) {
         var callout:RNFrostedSidebar = RNFrostedSidebar(images: icons)

@@ -15,6 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         Parse.setApplicationId("Duz271CygXpCc8IsoUyNybDvGp4By1LKmb3nlzfC", clientKey: "FmV10FvtNZZysKXs4m5sBMKIiOLUAEi3iXR4DGU8")
+        /*
         if var organizer = PFQuery(className: "Organizer").getObjectWithId("zWdd1CdDFu") {
             var storyboard = UIStoryboard(name: "Organizer", bundle: nil)
             var organizerNavigationController = storyboard.instantiateInitialViewController() as UINavigationController
@@ -22,6 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             organizerController.organizer = organizer
             window?.rootViewController = organizerNavigationController
         }
+        */
         return true
     }
 

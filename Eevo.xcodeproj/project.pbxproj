@@ -138,7 +138,7 @@
 				5477F03A19EA555F00B6D36C /* Models */,
 				5477F03919EA555600B6D36C /* Controllers */,
 				5477F03B19EA556500B6D36C /* Views */,
-				5477F07119EE301300B6D36C /* xibs */,
+				5477F07119EE301300B6D36C /* Xibs */,
 				5477F02019EA52D600B6D36C /* Images.xcassets */,
 				5477F01719EA52D600B6D36C /* Supporting Files */,
 				5477F04519EAE3DF00B6D36C /* PodHeader.m */,
@@ -211,7 +211,7 @@
 			name = Views;
 			sourceTree = "<group>";
 		};
-		5477F07119EE301300B6D36C /* xibs */ = {
+		5477F07119EE301300B6D36C /* Xibs */ = {
 			isa = PBXGroup;
 			children = (
 				5477F02219EA52D600B6D36C /* LaunchScreen.xib */,
@@ -220,7 +220,7 @@
 				5477F06119EE2D2A00B6D36C /* EventRatingCell.xib */,
 				5477F06B19EE2D7D00B6D36C /* OrganizerCell.xib */,
 			);
-			name = xibs;
+			name = Xibs;
 			sourceTree = "<group>";
 		};
 		5477F07219EE302D00B6D36C /* Storyboards */ = {
