@@ -52,6 +52,10 @@ class EventViewController: LoggedInViewController, UITableViewDataSource, UITabl
                     user.fetchIfNeededInBackgroundWithBlock({ (userFetched: PFObject!, error: NSError!) -> Void in
                         self.organizerThumbnailView.file = (userFetched["avatar_thumbnail"] as? PFFile)
                         self.organizerThumbnailView.loadInBackground()
+                        self.organizerThumbnailView.layer.cornerRadius = 23.0;
+                        self.organizerThumbnailView.layer.borderWidth = 2.0;
+                        self.organizerThumbnailView.layer.borderColor = UIColor(red: 0.0, green: 1.0, blue: 0.0, alpha: 0.5).CGColor
+                        self.organizerThumbnailView.clipsToBounds = true
                     })
                 }
             }

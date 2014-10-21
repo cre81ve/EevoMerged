@@ -46,6 +46,10 @@ class OrganizerViewController: LoggedInViewController, UITableViewDataSource, UI
                     self.headerNameLabel.text = (userFetched["name"] as? String)
                     self.headerThumbnailView.file = (userFetched["avatar_thumbnail"] as? PFFile)
                     self.headerThumbnailView.loadInBackground()
+                    self.headerThumbnailView.layer.cornerRadius = 23.0;
+                    self.headerThumbnailView.layer.borderWidth = 2.0;
+                    self.headerThumbnailView.layer.borderColor = UIColor(red: 0.0, green: 1.0, blue: 0.0, alpha: 0.5).CGColor
+                    self.headerThumbnailView.clipsToBounds = true
                 })
             }
         }

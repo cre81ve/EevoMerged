@@ -10,13 +10,9 @@ import UIKit
 
 class EventCollectionCell: UICollectionViewCell {
     @IBOutlet weak var numberAttending: UILabel!
-    
-    @IBOutlet weak var eventBackgroundImage: UIImageView!
-    
-    @IBOutlet weak var eventOrganizerAvatar: UIImageView!
-    
-    @IBOutlet weak var eventTitle: UILabel!
-    
+    @IBOutlet weak var eventBackgroundImage: PFImageView!
+    @IBOutlet weak var eventOrganizerAvatar: PFImageView!
+    @IBOutlet weak var eventTitle: UILabel!    
     @IBOutlet weak var eventWhen: UILabel!
     @IBOutlet weak var eventWhere: UILabel!
 }

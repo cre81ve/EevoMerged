@@ -25,6 +25,7 @@ class EventSecondCell: UITableViewCell {
         self.eventNameLabel.text = (event["name"] as? String)
         self.backgroundImageView.file = (event["image_large"] as? PFFile)
         self.backgroundImageView.loadInBackground()
+        
         if var organizer = event["organizer"] as? PFObject {
             organizer.fetchIfNeededInBackgroundWithBlock() { (object: PFObject!, error: NSError!) -> Void in
                 if var user = object["user"] as? PFObject {
@@ -32,6 +33,10 @@ class EventSecondCell: UITableViewCell {
                         if self.showThumbnail {
                             self.organizerThumbnailView.file = (userFetched["avatar_thumbnail"] as? PFFile)
                             self.organizerThumbnailView.loadInBackground()
+                            self.organizerThumbnailView.layer.cornerRadius = 23.0;
+                            self.organizerThumbnailView.layer.borderWidth = 2.0;
+                            self.organizerThumbnailView.layer.borderColor = UIColor(red: 0.0, green: 1.0, blue: 0.0, alpha: 0.5).CGColor
+                            self.organizerThumbnailView.clipsToBounds = true
                         }
                     })
                 }

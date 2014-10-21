@@ -10,12 +10,15 @@ import UIKit
 
 class OrganizerCell: UITableViewCell {
 
-    @IBOutlet weak var backGroundImage: UIImageView!
+    var organizer: Organizer!
+    
+    @IBOutlet weak var backGroundImage: PFImageView!
     @IBOutlet weak var organizerDescription: UILabel!
     @IBOutlet weak var organizerName: UILabel!
-    @IBOutlet weak var avatarImage: UIImageView!
+    @IBOutlet weak var avatarImage: PFImageView!
     @IBOutlet weak var eeVoScore: UILabel!
     @IBOutlet weak var numberOfEvents: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

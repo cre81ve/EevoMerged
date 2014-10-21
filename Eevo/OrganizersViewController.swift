@@ -9,16 +9,17 @@
 import UIKit
 
 class OrganizersViewController: LoggedInViewController ,UITableViewDelegate ,UITableViewDataSource ,RNFrostedSidebarDelegate {
-//    var icons:NSArray = [UIImage(named:"iconorganizer"),UIImage(named:"iconevent"),UIImage(named:"feedback")]
-
-        var icons:NSArray = [UIImage(named:"icon-organizers"),UIImage(named:"icon-event"),UIImage(named:"icon-feedback")]
+    
+    var icons:NSArray = [UIImage(named:"icon-organizers"),UIImage(named:"icon-event"),UIImage(named:"icon-feedback")]
+    var organizers = [Organizer]()
+    
     @IBAction func onBurger(sender: AnyObject) {
         var callout:RNFrostedSidebar = RNFrostedSidebar(images: icons)
         callout.delegate = self
         callout.show()
     }
     @IBOutlet weak var organizersTable: UITableView!
-    var organizers = [Organizer]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         organizersTable.delegate = self
@@ -29,8 +30,7 @@ class OrganizersViewController: LoggedInViewController ,UITableViewDelegate ,UIT
             self.organizers = organizers!
             self.organizersTable.reloadData()
         }
-        
-              NSLog("Organizers Count \(organizers.count)")
+        NSLog("Organizers Count \(organizers.count)")
     }
 
     override func didReceiveMemoryWarning() {
@@ -49,19 +49,32 @@ class OrganizersViewController: LoggedInViewController ,UITableViewDelegate ,UIT
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var organizerCell = tableView.dequeueReusableCellWithIdentifier("organizerCell") as OrganizerCell
         var organizer:Organizer = organizers[indexPath.row]
+        organizerCell.organizer = organizer
         organizerCell.organizerName.text = organizer.name
         organizerCell.organizerDescription.text = organizer.description
-        organizerCell.backGroundImage.setImageWithURL(NSURL(string:organizer.backGroundImageUrl))
-        organizerCell.avatarImage.setImageWithURL(NSURL(string:organizer.user.avatarImageUrl))
-        organizerCell.backGroundImage.clipsToBounds = true
-        organizerCell.contentView.layer.borderColor = UIColor.blackColor().CGColor
-        organizerCell.contentView.layer.borderWidth = 1.0
+        if organizer.backgroundImage != nil {
+            organizerCell.backGroundImage.file = organizer.backgroundImage!
+            organizerCell.backGroundImage.loadInBackground()
+            organizerCell.backGroundImage.clipsToBounds = true
+        }
+        if organizer.user.avatarImage != nil {
+            organizerCell.avatarImage.file = organizer.user.avatarImage!
+            organizerCell.avatarImage.loadInBackground()
+            organizerCell.avatarImage.layer.cornerRadius = 23.0;
+            organizerCell.avatarImage.layer.borderWidth = 2.0;
+            organizerCell.avatarImage.layer.borderColor = UIColor(red: 0.0, green: 1.0, blue: 0.0, alpha: 0.5).CGColor
+            organizerCell.avatarImage.clipsToBounds = true;
+        }
         
-        organizerCell.avatarImage.layer.cornerRadius = 23.0;
-        organizerCell.avatarImage.layer.borderWidth = 2.0;
-        organizerCell.avatarImage.layer.borderColor = UIColor.greenColor().CGColor;
-        organizerCell.avatarImage.clipsToBounds = true;
         return organizerCell
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        var organizer:Organizer = organizers[indexPath.row]
+        var storyboard = UIStoryboard(name: "Organizer", bundle: nil)
+        var organizerController = storyboard.instantiateViewControllerWithIdentifier("OrganizerViewController") as OrganizerViewController
+        organizerController.organizer = organizer.pfOrganizer
+        self.navigationController?.pushViewController(organizerController, animated: true)        
     }
     
     func sidebar(sidebar: RNFrostedSidebar!, didTapItemAtIndex index: UInt) {
@@ -70,14 +83,12 @@ class OrganizersViewController: LoggedInViewController ,UITableViewDelegate ,UIT
         var nav = self.storyboard?.instantiateViewControllerWithIdentifier("mainNavId") as UINavigationController
         var navEvents = self.storyboard?.instantiateViewControllerWithIdentifier("eventsNavId") as UINavigationController
 
-        if(index == 0) {
+        if index == 0 {
             self.presentViewController(nav, animated: true, completion: nil)
-//            self.performSegueWithIdentifier("eventsSegue", sender: nav)
         }
         
-        if(index == 1) {
+        if index == 1 {
             self.presentViewController(navEvents, animated: true, completion: nil)
-
         }
     }
 
