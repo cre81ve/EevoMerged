@@ -24,6 +24,10 @@ class OrganizerViewController: LoggedInViewController, UITableViewDataSource, UI
     @IBOutlet weak var headerNameLabel: UILabel!
     @IBOutlet weak var organizerTableView: UITableView!
     
+    @IBOutlet weak var ratingSpecNameLabel: UILabel!
+    @IBOutlet weak var ratingSpecScoreLabel: UILabel!
+    @IBOutlet weak var ratingSpecRatingsCountLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.organizerTableView.delegate = self
@@ -52,6 +56,27 @@ class OrganizerViewController: LoggedInViewController, UITableViewDataSource, UI
                     self.headerThumbnailView.clipsToBounds = true
                 })
             }
+            var query = PFQuery(className: "OrganizerRatingStats")
+            query.whereKey("organizer", equalTo: self.organizer)
+            query.includeKey("rating_spec")
+            query.includeKey("event")
+            query.findObjectsInBackgroundWithBlock({ (objects: [AnyObject]!, error: NSError!) -> Void in
+                if false && objects != nil && objects.count > 0 {
+                    var totalScore = 0.0, scoresCount = 0.0
+                    for object in objects {
+                        var stats = object as PFObject
+                        var event = stats["event"] as PFObject
+                        var eventOrganizer = event["organizer"] as PFObject
+                        if eventOrganizer.objectId != self.organizer.objectId { continue }
+                        totalScore += Double(stats["numeric_value"] as Int)
+                        scoresCount += 1
+                        println("\(totalScore) - \(scoresCount)")
+                    }
+                    var avgScore = (totalScore / scoresCount / 5.0) * 100
+                    self.ratingSpecScoreLabel.text = "Score: \(avgScore)%"
+                    self.ratingSpecRatingsCountLabel.text = "Feedback: \(scoresCount)"
+                }
+            })
         }
         
         var query = PFQuery(className: "Event")
@@ -87,7 +112,7 @@ class OrganizerViewController: LoggedInViewController, UITableViewDataSource, UI
     
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         var title: String? = nil
-        switch OrganizerSection.fromRaw(section)! {
+        switch OrganizerSection(rawValue: section)! {
             case .UpcomingEvents: title = "Upcoming Events"
             case .PastEvents: title = "Past Events"
         }
@@ -100,7 +125,7 @@ class OrganizerViewController: LoggedInViewController, UITableViewDataSource, UI
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         var count = 0
-        switch OrganizerSection.fromRaw(section)! {
+        switch OrganizerSection(rawValue: section)! {
             case .UpcomingEvents: count = self.upcomingEvents.count
             case .PastEvents: count = self.pastEvents.count
         }
@@ -115,7 +140,7 @@ class OrganizerViewController: LoggedInViewController, UITableViewDataSource, UI
             cell = objects[0] as? EventSecondCell
         }
         var event: PFObject? = nil
-        switch OrganizerSection.fromRaw(indexPath.section)! {
+        switch OrganizerSection(rawValue: indexPath.section)! {
             case .UpcomingEvents: cell?.updateCellWithEvent(self.upcomingEvents[indexPath.row])
             case .PastEvents: cell?.updateCellWithEvent(self.pastEvents[indexPath.row])
         }
@@ -125,7 +150,7 @@ class OrganizerViewController: LoggedInViewController, UITableViewDataSource, UI
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         var event: PFObject! = nil
-        switch OrganizerSection.fromRaw(indexPath.section)! {
+        switch OrganizerSection(rawValue: indexPath.section)! {
             case .UpcomingEvents: event = self.upcomingEvents[indexPath.row]
             case .PastEvents: event = self.pastEvents[indexPath.row]
         }

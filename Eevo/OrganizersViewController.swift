@@ -10,11 +10,15 @@ import UIKit
 
 class OrganizersViewController: LoggedInViewController ,UITableViewDelegate ,UITableViewDataSource ,RNFrostedSidebarDelegate {
     
-    var icons:NSArray = [UIImage(named:"icon-organizers"),UIImage(named:"icon-event"),UIImage(named:"icon-feedback")]
+    var icons = [
+        UIImage(named: "icon-organizers")!,
+        UIImage(named: "icon-event")!,
+        UIImage(named: "icon-feedback")!
+    ]
     var organizers = [Organizer]()
     
     @IBAction func onBurger(sender: AnyObject) {
-        var callout:RNFrostedSidebar = RNFrostedSidebar(images: icons)
+        var callout = RNFrostedSidebar(images: self.icons)
         callout.delegate = self
         callout.show()
     }
@@ -30,6 +34,7 @@ class OrganizersViewController: LoggedInViewController ,UITableViewDelegate ,UIT
             self.organizers = organizers!
             self.organizersTable.reloadData()
         }
+        
         NSLog("Organizers Count \(organizers.count)")
     }
 
@@ -49,23 +54,7 @@ class OrganizersViewController: LoggedInViewController ,UITableViewDelegate ,UIT
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var organizerCell = tableView.dequeueReusableCellWithIdentifier("organizerCell") as OrganizerCell
         var organizer:Organizer = organizers[indexPath.row]
-        organizerCell.organizer = organizer
-        organizerCell.organizerName.text = organizer.name
-        organizerCell.organizerDescription.text = organizer.description
-        if organizer.backgroundImage != nil {
-            organizerCell.backGroundImage.file = organizer.backgroundImage!
-            organizerCell.backGroundImage.loadInBackground()
-            organizerCell.backGroundImage.clipsToBounds = true
-        }
-        if organizer.user.avatarImage != nil {
-            organizerCell.avatarImage.file = organizer.user.avatarImage!
-            organizerCell.avatarImage.loadInBackground()
-            organizerCell.avatarImage.layer.cornerRadius = 23.0;
-            organizerCell.avatarImage.layer.borderWidth = 2.0;
-            organizerCell.avatarImage.layer.borderColor = UIColor(red: 0.0, green: 1.0, blue: 0.0, alpha: 0.5).CGColor
-            organizerCell.avatarImage.clipsToBounds = true;
-        }
-        
+        organizerCell.updateCellWithOrganizer(organizer)        
         return organizerCell
     }
     

@@ -17,7 +17,11 @@ class EventsCollectionViewController: LoggedInViewController, UITableViewDataSou
     
     var upcomingEvents: [PFObject] = []
     var pastEvents: [PFObject] = []
-    var icons:NSArray = [UIImage(named:"icon-organizers"),UIImage(named:"icon-event"),UIImage(named:"icon-feedback")]
+    var icons = [
+        UIImage(named: "icon-organizers")!,
+        UIImage(named: "icon-event")!,
+        UIImage(named: "icon-feedback")!
+    ]
     var refreshControl: UIRefreshControl? = UIRefreshControl()
 
     @IBOutlet weak var eventsTableView: UITableView!
@@ -74,7 +78,7 @@ class EventsCollectionViewController: LoggedInViewController, UITableViewDataSou
     
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         var title: String? = nil
-        switch EventsSection.fromRaw(section)! {
+        switch EventsSection(rawValue: section)! {
             case .UpcomingEvents: title = "Upcoming Events"
             case .PastEvents: title = "Past Events"
         }
@@ -87,7 +91,7 @@ class EventsCollectionViewController: LoggedInViewController, UITableViewDataSou
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         var count = 0
-        switch EventsSection.fromRaw(section)! {
+        switch EventsSection(rawValue: section)! {
             case .UpcomingEvents: count = self.upcomingEvents.count
             case .PastEvents: count = self.pastEvents.count
         }
@@ -102,7 +106,7 @@ class EventsCollectionViewController: LoggedInViewController, UITableViewDataSou
             cell = objects[0] as? EventSecondCell
         }
         var event: PFObject? = nil
-        switch EventsSection.fromRaw(indexPath.section)! {
+        switch EventsSection(rawValue: indexPath.section)! {
             case .UpcomingEvents: cell?.updateCellWithEvent(self.upcomingEvents[indexPath.row])
             case .PastEvents: cell?.updateCellWithEvent(self.pastEvents[indexPath.row])
         }
@@ -112,7 +116,7 @@ class EventsCollectionViewController: LoggedInViewController, UITableViewDataSou
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         var event: PFObject! = nil
-        switch EventsSection.fromRaw(indexPath.section)! {
+        switch EventsSection(rawValue: indexPath.section)! {
             case .UpcomingEvents: event = self.upcomingEvents[indexPath.row]
             case .PastEvents: event = self.pastEvents[indexPath.row]
         }

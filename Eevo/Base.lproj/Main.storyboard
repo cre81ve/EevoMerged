@@ -40,8 +40,8 @@
                                                         <constraint firstAttribute="height" constant="46" id="jlY-K3-2r1"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="25" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0jL-as-2du">
-                                                    <rect key="frame" x="508" y="8" width="14" height="15"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0jL-as-2du">
+                                                    <rect key="frame" x="521" y="8" width="7" height="15"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -86,7 +86,7 @@
                                                 <constraint firstItem="5lC-7Z-rdj" firstAttribute="leading" secondItem="5nb-S1-7Xm" secondAttribute="leading" constant="2" id="eoT-yP-5jG"/>
                                                 <constraint firstItem="fnM-EM-Mqz" firstAttribute="top" secondItem="5nb-S1-7Xm" secondAttribute="topMargin" id="gEr-TR-NRN"/>
                                                 <constraint firstItem="7TA-Xg-gkx" firstAttribute="top" secondItem="Ss5-si-RXe" secondAttribute="bottom" constant="53" id="ijV-B7-e31"/>
-                                                <constraint firstItem="fnM-EM-Mqz" firstAttribute="leading" secondItem="0jL-as-2du" secondAttribute="trailing" constant="8" id="mez-ko-53e"/>
+                                                <constraint firstItem="fnM-EM-Mqz" firstAttribute="leading" secondItem="0jL-as-2du" secondAttribute="trailing" constant="2" id="mez-ko-53e"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="7m1-IR-WDS" secondAttribute="trailing" constant="5" id="q1D-St-Vaq"/>
                                                 <constraint firstItem="7m1-IR-WDS" firstAttribute="leading" secondItem="5nb-S1-7Xm" secondAttribute="leadingMargin" constant="36" id="qDC-nM-PK4"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="fnM-EM-Mqz" secondAttribute="trailing" constant="3" id="qRb-lm-vLG"/>

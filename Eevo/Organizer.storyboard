@@ -154,6 +154,9 @@
                         <outlet property="headerNameLabel" destination="Slb-DL-4BR" id="a5e-Xx-YA4"/>
                         <outlet property="headerThumbnailView" destination="MSE-LC-jE6" id="qGR-ig-NJp"/>
                         <outlet property="organizerTableView" destination="ut6-Mh-DEO" id="bb3-CU-k6R"/>
+                        <outlet property="ratingSpecNameLabel" destination="mU8-8H-i0p" id="Te0-8i-Stl"/>
+                        <outlet property="ratingSpecRatingsCountLabel" destination="MU8-df-Hq5" id="U5s-sr-zk0"/>
+                        <outlet property="ratingSpecScoreLabel" destination="Xea-EH-Wio" id="Avf-ad-eqD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8fu-Fk-oTy" userLabel="First Responder" sceneMemberID="firstResponder"/>

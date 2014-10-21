@@ -42,7 +42,17 @@ class EventSecondCell: UITableViewCell {
                 }
             }
         }
-        self.attendingCountLabel.text = "22 attending"
+        
+        var query = PFQuery(className: "EventParticipant")
+        query.whereKey("event", equalTo: self.event)
+        query.findObjectsInBackgroundWithBlock { (objects: [AnyObject]!, error: NSError!) -> Void in
+            if objects != nil {
+                self.attendingCountLabel.text = "\(objects.count) attending"
+            }
+            else {
+                self.attendingCountLabel.text = "0 attending"
+            }
+        }
         
         var address = (self.event["address"] as? String)
         var city = (self.event["city"] as? String)

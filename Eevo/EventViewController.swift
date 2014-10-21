@@ -122,7 +122,7 @@ class EventViewController: LoggedInViewController, UITableViewDataSource, UITabl
 
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         var title: String? = nil
-        switch EventSection.fromRaw(section)! {
+        switch EventSection(rawValue: section)! {
             case .EventRatings: title = "Event Ratings"
         }
         return title
@@ -134,7 +134,7 @@ class EventViewController: LoggedInViewController, UITableViewDataSource, UITabl
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         var count = 0
-        switch EventSection.fromRaw(section)! {
+        switch EventSection(rawValue: section)! {
             case .EventRatings: count = self.ratingStats.count
         }
         return count
@@ -148,7 +148,7 @@ class EventViewController: LoggedInViewController, UITableViewDataSource, UITabl
             cell = objects[0] as? EventRatingCell
         }
         var eventRating: PFObject? = nil
-        switch EventSection.fromRaw(indexPath.section)! {
+        switch EventSection(rawValue: indexPath.section)! {
             case .EventRatings: cell?.updateCellWithRating(self.ratingStats[indexPath.row])
         }
         cell?.selectionStyle = .None
